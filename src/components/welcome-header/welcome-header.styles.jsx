@@ -4,7 +4,7 @@ export const Header = styled.header`
   display: flex;
   justify-content: space-between;
   place-items: center;
-  background-color: ${({ url }) => (url === "/sign-in" ? "black" : null)};
+  background-color: ${({ url }) => (url !== "/" ? "black" : null)};
 
   img {
     width: 15rem;
@@ -12,7 +12,7 @@ export const Header = styled.header`
   }
 
   button {
-    display: ${({ url }) => (url === "/sign-in" ? "none" : "initial")};
+    display: ${({ url }) => (url !== "/" ? "none" : "initial")};
     margin-right: 2rem;
     padding: 0.8rem 1rem;
     border: none;
@@ -32,7 +32,4 @@ export const Header = styled.header`
     padding: 0 10rem;
     background-color: transparent;
   }
-
-  /* @media screen and (width>740px) {
-  } */
 `;
