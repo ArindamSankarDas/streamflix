@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export const SignInContainer = styled.div`
+export const AuthContainer = styled.div`
   width: 100%;
   height: calc(100vh - 84px);
   background-color: black;
