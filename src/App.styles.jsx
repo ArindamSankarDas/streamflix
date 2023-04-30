@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const AppContainer = styled.div`
   position: relative;
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   background: ${({ bgUrl }) => `url(${bgUrl})`} no-repeat center;
   background-size: cover;
@@ -28,7 +28,7 @@ export const AboutAndEmail = styled.div`
   font-family: "Roboto", sans-serif;
 
   section {
-    width: 100vw;
+    width: 100%;
     text-align: center;
     padding: 0 2rem;
   }
