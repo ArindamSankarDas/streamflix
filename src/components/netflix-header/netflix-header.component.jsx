@@ -1,15 +1,38 @@
+import netflixLogo from "../../assets/images/netflix-logo.png";
+import profileIcon from "../../assets/images/profile-icon.jpg";
+
+import { useState } from "react";
 import {
-  HeaderContainer,
   List,
+  Item,
+  HeaderContainer,
   LogoAndNavContainer,
   AccountSearchAndNotification,
 } from "./netflix-header.styles";
-import netflixLogo from "../../assets/images/netflix-logo.png";
-import profileIcon from "../../assets/images/profile-icon.jpg";
-import { useState } from "react";
 
 const NetflixHeader = () => {
   const [dropdownActive, setDropdownActive] = useState(false);
+  const [listState, setListState] = useState({
+    prev: "Home",
+    Home: true,
+    "TV Shows": false,
+    Movies: false,
+    "New & Popular": false,
+    "My List": false,
+  });
+
+  const handleStyles = (prev, elem) => {
+    setListState((prevListState) => {
+      return {
+        ...prevListState,
+        [prev]: false,
+        [elem]: true,
+        prev: `${elem}`,
+      };
+    });
+
+    setDropdownActive(false);
+  };
 
   return (
     <HeaderContainer>
@@ -17,24 +40,30 @@ const NetflixHeader = () => {
         <img src={netflixLogo} alt="netflix" />
         <nav>
           <h2 onClick={() => setDropdownActive((prevState) => !prevState)}>
-            Browse<i class="fa-sharp fa-solid fa-caret-down"></i>
+            Browse<i className="fa-sharp fa-solid fa-caret-down"></i>
           </h2>
           <List isActive={dropdownActive}>
-            <li>Home</li>
-            <li>TV Shows</li>
-            <li>Movies</li>
-            <li>New & Popular</li>
-            <li>My List</li>
+            {Object.keys(listState).map((elem, id) =>
+              elem !== "prev" ? (
+                <Item
+                  key={id}
+                  onClick={() => handleStyles(listState.prev, elem)}
+                  isActive={listState[elem]}
+                >
+                  {elem}
+                </Item>
+              ) : null
+            )}
           </List>
         </nav>
       </LogoAndNavContainer>
 
       <AccountSearchAndNotification>
         <span>
-          <i class="fa-solid fa-magnifying-glass"></i>
+          <i className="fa-solid fa-magnifying-glass"></i>
         </span>
         <span>
-          <i class="fa-regular fa-bell"></i>
+          <i className="fa-regular fa-bell"></i>
         </span>
         <img src={profileIcon} alt="profile_icon" />
       </AccountSearchAndNotification>

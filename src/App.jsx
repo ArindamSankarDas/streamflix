@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { AppContainer, AboutAndEmail, EmailContainer } from "./App.styles";
 
@@ -8,6 +8,7 @@ import WelcomeHeader from "./components/welcome-header/welcome-header.component"
 
 const App = () => {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
 
   return (
@@ -35,7 +36,7 @@ const App = () => {
                 />
                 <h3>Enter your Email</h3>
               </div>
-              <button>Get Started</button>
+              <button onClick={() => navigate("/browse")}>Get Started</button>
             </EmailContainer>
           </section>
         </AboutAndEmail>

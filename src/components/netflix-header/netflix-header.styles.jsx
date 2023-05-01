@@ -1,51 +1,9 @@
 import styled, { keyframes } from "styled-components";
 
-const fadeIn = keyframes`
-    0%{
-        z-index: -1; 
-        opacity: 0;
-    }
-    30%{
-        z-index: auto;
-        opacity: 0.5;
-    }
-    50%{
-        z-index: auto;
-        opacity: 0.8;
-    }
-    100%{
-        z-index: auto;
-        opacity: 1;
-    }
-`;
-
-const fadeOut = keyframes`
-    0%{
-        z-index: auto; 
-        opacity: 1;
-    }
-    30%{
-        z-index: auto;
-        opacity: 0.8;
-    }
-    50%{
-        z-index: auto;
-        opacity: 0.5;
-    }
-    80%{
-        z-index: auto;
-        opacity: 0;
-    }
-
-    100%{
-        z-index: -1;
-        opacity: 0;
-    }
-`;
-
 export const HeaderContainer = styled.div`
   width: 100%;
   position: fixed;
+  z-index: 10;
   background-color: transparent;
   display: flex;
   justify-content: space-between;
@@ -56,10 +14,10 @@ export const HeaderContainer = styled.div`
 export const LogoAndNavContainer = styled.div`
   display: flex;
   align-items: center;
+  gap: 0.2rem;
 
   img {
-    width: 10rem;
-    margin-right: 1rem;
+    width: 8rem;
   }
 
   nav {
@@ -67,17 +25,35 @@ export const LogoAndNavContainer = styled.div`
   }
 
   h2 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 500;
     cursor: pointer;
     user-select: none;
 
     i {
-      margin-left: 1rem;
+      margin-left: 0.5rem;
+    }
+  }
+
+  @media screen and (width > 400px) {
+    gap: 1rem;
+
+    h2 {
+      font-size: 1.5rem;
+
+      i {
+        margin-left: 1rem;
+      }
+    }
+
+    img {
+      width: 10rem;
     }
   }
 
   @media screen and (width > 1024px) {
+    gap: 4rem;
+
     h2 {
       display: none;
     }
@@ -91,21 +67,14 @@ export const LogoAndNavContainer = styled.div`
 export const List = styled.ul`
   list-style: none;
   position: absolute;
-  top: 4rem;
+  top: ${({ isActive }) => (!isActive ? "-100rem" : "4rem")};
   font-size: 1.4rem;
   width: 22rem;
   text-align: center;
   display: flex;
   flex-direction: column;
   background-color: #181717cc;
-  z-index: ${({ isActive }) => (!isActive ? -1 : "auto")};
-  opacity: ${({ isActive }) => (!isActive ? 0 : 1)};
-  animation: ${({ isActive }) => (isActive ? fadeIn : fadeOut)} 1s ease-in;
-
-  li {
-    padding: 2rem 0;
-    cursor: pointer;
-  }
+  transition: all 0.4s ease-in-out;
 
   @media screen and (width > 1024px) {
     position: static;
@@ -114,9 +83,21 @@ export const List = styled.ul`
     background: transparent;
     width: auto;
     flex-direction: row;
-    gap: 2rem;
+    gap: 3rem;
     font-size: 1.5rem;
     animation: none;
+  }
+`;
+
+export const Item = styled.li`
+  color: ${({ isActive }) => (isActive ? "white" : "#ccc6c6")};
+  font-weight: ${({ isActive }) => (isActive ? "700" : "500")};
+  padding: 2rem 0;
+  cursor: pointer;
+
+  &:hover {
+    color: white;
+    transition: color 0.2s linear;
   }
 `;
 
@@ -124,15 +105,29 @@ export const AccountSearchAndNotification = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
+  gap: 1.4rem;
 
   span {
-    font-size: 1.8rem;
+    font-size: 1.3rem;
     cursor: pointer;
   }
 
   img {
-    width: 3.5rem;
+    width: 2.8rem;
     cursor: pointer;
+  }
+
+  @media screen and (width > 400px) {
+    gap: 2rem;
+    span {
+      font-size: 1.8rem;
+    }
+
+    img {
+      width: 3.5rem;
+    }
+  }
+  @media screen and (width > 1024px) {
+    gap: 4rem;
   }
 `;
