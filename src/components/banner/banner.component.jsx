@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { BannerContainer, TitleAndInfo } from "./banner.styles";
+import { BannerContainer, BannerFadeEffect, TitleAndInfo } from "./banner.styles";
 import mutePng from "../../assets/images/mute.png";
 import volumePng from "../../assets/images/volume.png";
 import narcos from "../../assets/videos/Narcos - Opening Credits [HD] - Netflix.mp4";
@@ -39,6 +39,7 @@ const Banner = () => {
           </button>
         </div>
       </TitleAndInfo>
+      <BannerFadeEffect />
     </BannerContainer>
   );
 };

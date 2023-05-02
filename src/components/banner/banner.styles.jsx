@@ -48,12 +48,13 @@ export const TitleAndInfo = styled.div`
   position: absolute;
   bottom: 20%;
   left: 10%;
+  z-index: 20;
 
   h1 {
     font-family: "Rubik Pixels", cursive;
     font-size: 2rem;
-    font-weight: 500;
-    text-shadow: 4px 5px 4px #ffff;
+    font-weight: 700;
+    text-shadow: 5px 5px 4px #360505;
   }
 
   .btn-container {
@@ -149,5 +150,24 @@ export const TitleAndInfo = styled.div`
     .btn-container > button > i {
       font-size: 3rem;
     }
+  }
+`;
+
+export const BannerFadeEffect = styled.div`
+  position: absolute;
+  z-index: 10;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 60vh;
+  background-image: linear-gradient(
+    180deg,
+    transparent,
+    rgba(37, 37, 37, 0.61),
+    #111
+  );
+
+  @media (max-width: 768px) {
+    height: 50vh;
   }
 `;
