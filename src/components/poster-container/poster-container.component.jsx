@@ -35,10 +35,9 @@ const PosterContainer = () => {
   const handleNext = () => {
     const scrollCalculation =
       carouselRef.current.scrollWidth - carouselRef.current.clientWidth;
+    const currentWidth = clientWidth + carouselRef.current.clientWidth;
 
     if (clientWidth <= scrollCalculation) {
-      const currentWidth = clientWidth + carouselRef.current.clientWidth;
-
       carouselRef.current.scrollTo({
         top: 0,
         left: currentWidth,
@@ -46,7 +45,10 @@ const PosterContainer = () => {
       });
 
       setClientWidth(currentWidth);
-      setScrollWidth(scrollCalculation);
+
+      if (scrollWidth !== scrollCalculation) {
+        setScrollWidth(scrollCalculation);
+      }
     }
 
     return;
