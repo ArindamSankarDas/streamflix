@@ -1,18 +1,21 @@
 import { useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { wait } from "../../assets/functions/state.func";
+import axios from "axios";
 
 import {
   Carousel,
   CarouselBox,
   CarouselItem,
+  OnLoad,
   PosterContainerBox,
 } from "./poster-container.styles";
-import axios from "axios";
 
 const PosterContainer = () => {
   const carouselRef = useRef();
   const [clientWidth, setClientWidth] = useState(0);
   const [scrollWidth, setScrollWidth] = useState(0);
+
 
   const API_KEY = "375b53f7c31dd1ed7e388db6bf583b15";
   const baseImgUrl = "https://image.tmdb.org/t/p/w500";
@@ -29,7 +32,7 @@ const PosterContainer = () => {
 
   const postQuery = useQuery({
     queryKey: ["posts"],
-    queryFn: fetchData,
+    queryFn: () => wait(2000).then(fetchData),
   });
 
   const handleNext = () => {
@@ -76,7 +79,7 @@ const PosterContainer = () => {
 
       <Carousel>
         {postQuery.isLoading ? (
-          <h1>Loading...</h1>
+          <OnLoad />
         ) : (
           <CarouselBox className="carousel-box" ref={carouselRef}>
             {postQuery.data.map((elem) => (
