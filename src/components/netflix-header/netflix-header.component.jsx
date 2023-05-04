@@ -1,7 +1,5 @@
-import netflixLogo from "../../assets/images/netflix-logo.png";
-import profileIcon from "../../assets/images/profile-icon.jpg";
+import { useState, useEffect } from "react";
 
-import { useState } from "react";
 import {
   List,
   Item,
@@ -10,7 +8,11 @@ import {
   AccountSearchAndNotification,
 } from "./netflix-header.styles";
 
+import netflixLogo from "../../assets/images/netflix-logo.png";
+import profileIcon from "../../assets/images/profile-icon.jpg";
+
 const NetflixHeader = () => {
+  const [bg, setBg] = useState(false);
   const [dropdownActive, setDropdownActive] = useState(false);
   const [listState, setListState] = useState({
     prev: "Home",
@@ -20,6 +22,18 @@ const NetflixHeader = () => {
     "New & Popular": false,
     "My List": false,
   });
+
+  const handleScroll = () => {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 20) {
+        setBg(true);
+      } else {
+        setBg(false);
+      }
+    });
+  };
+
+  handleScroll();
 
   const handleStyles = (prev, elem) => {
     setListState((prevListState) => {
@@ -35,7 +49,7 @@ const NetflixHeader = () => {
   };
 
   return (
-    <HeaderContainer>
+    <HeaderContainer navBg={bg}>
       <LogoAndNavContainer>
         <img src={netflixLogo} alt="netflix" />
         <nav>

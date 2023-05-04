@@ -4,11 +4,12 @@ export const HeaderContainer = styled.div`
   width: 100%;
   position: fixed;
   z-index: 10;
-  background-color: transparent;
+  background-color: ${({ navBg }) => (navBg ? "black" : "transparent")};
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 1.8rem;
+  transition: background-color 0.5s linear;
 `;
 
 export const LogoAndNavContainer = styled.div`

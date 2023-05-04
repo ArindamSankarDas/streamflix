@@ -1,14 +1,4 @@
-import { keyframes } from "styled-components";
 import styled from "styled-components";
-
-const skeleton_loading = keyframes`
-0%{
-  background-color: hsl(199deg, 2%, 16%);
-}
-100%{
-  background-color: hsl(200deg, 2%, 30%);
-}
-`;
 
 export const PosterContainerBox = styled.section`
   margin-top: 5rem;
@@ -17,7 +7,6 @@ export const PosterContainerBox = styled.section`
   h1 {
     font-size: 1.8rem;
     padding-left: 1.8rem;
-    margin-bottom: 1rem;
     font-weight: 500;
   }
 
@@ -33,15 +22,6 @@ export const PosterContainerBox = styled.section`
       padding-left: 5.5rem;
     }
   }
-`;
-
-export const OnLoad = styled.div`
-  width: 90%;
-  height: 20vh;
-  animation: ${skeleton_loading} 1s linear infinite alternate;
-  position: relative;
-  left: 5rem;
-  border-radius: 0.7rem;
 `;
 
 export const Carousel = styled.section`
