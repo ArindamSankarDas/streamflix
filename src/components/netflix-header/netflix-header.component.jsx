@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useSessionStorage } from "../../hooks/useSessionStorage";
 
 import {
   List,
@@ -13,8 +14,7 @@ import profileIcon from "../../assets/images/profile-icon.jpg";
 
 const NetflixHeader = () => {
   const [bg, setBg] = useState(false);
-  const [dropdownActive, setDropdownActive] = useState(false);
-  const [listState, setListState] = useState({
+  const [currentList, setCurrentList] = useSessionStorage("listDat", {
     prev: "Home",
     Home: true,
     "TV Shows": false,
@@ -22,6 +22,8 @@ const NetflixHeader = () => {
     "New & Popular": false,
     "My List": false,
   });
+
+  const [dropdownActive, setDropdownActive] = useState(false);
 
   const handleScroll = () => {
     window.addEventListener("scroll", () => {
@@ -36,7 +38,7 @@ const NetflixHeader = () => {
   handleScroll();
 
   const handleStyles = (prev, elem) => {
-    setListState((prevListState) => {
+    setCurrentList((prevListState) => {
       return {
         ...prevListState,
         [prev]: false,
@@ -57,12 +59,12 @@ const NetflixHeader = () => {
             Browse<i className="fa-sharp fa-solid fa-caret-down"></i>
           </h2>
           <List isActive={dropdownActive}>
-            {Object.keys(listState).map((elem, id) =>
+            {Object.keys(currentList).map((elem, id) =>
               elem !== "prev" ? (
                 <Item
                   key={id}
-                  onClick={() => handleStyles(listState.prev, elem)}
-                  isActive={listState[elem]}
+                  onClick={() => handleStyles(currentList.prev, elem)}
+                  isActive={currentList[elem]}
                 >
                   {elem}
                 </Item>
