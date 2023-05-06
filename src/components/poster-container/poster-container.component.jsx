@@ -1,37 +1,17 @@
 import { useRef, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { wait } from "../../assets/functions/promise.func";
-
 import {
   Carousel,
   CarouselBox,
   CarouselItem,
   PosterContainerBox,
 } from "./poster-container.styles";
-import OnLoad from "../onLoad/onLoad.component";
 
-const PosterContainer = () => {
+const PosterContainer = ({ data, title }) => {
   const carouselRef = useRef();
   const [clientWidth, setClientWidth] = useState(0);
   const [scrollWidth, setScrollWidth] = useState(0);
 
-  const API_KEY = "375b53f7c31dd1ed7e388db6bf583b15";
   const baseImgUrl = "https://image.tmdb.org/t/p/w500";
-
-  async function fetchData() {
-    const response = await fetch(
-      `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}`
-    );
-
-    const data = await response.json();
-
-    return data.results;
-  }
-
-  const postQuery = useQuery({
-    queryKey: ["posts"],
-    queryFn: () => wait(2000).then(fetchData),
-  });
 
   const handleNext = () => {
     const scrollCalculation =
@@ -73,32 +53,28 @@ const PosterContainer = () => {
 
   return (
     <PosterContainerBox>
-      <h1>Trending Now</h1>
+      <h1>{title}</h1>
 
       <Carousel>
-        {postQuery.isLoading ? (
-          <OnLoad />
-        ) : (
-          <CarouselBox className="carousel-box" ref={carouselRef}>
-            {postQuery.data.map((elem) => (
-              <CarouselItem key={elem.id}>
-                <img src={baseImgUrl + elem.backdrop_path} alt="img" />
-              </CarouselItem>
-            ))}
+        <CarouselBox className="carousel-box" ref={carouselRef}>
+          {data.map((elem) => (
+            <CarouselItem key={elem.id}>
+              <img src={baseImgUrl + elem.backdrop_path} alt="img" />
+            </CarouselItem>
+          ))}
 
-            {clientWidth ? (
-              <button className="btn left" onClick={handlePrev}>
-                <i className="fa-solid fa-chevron-left"></i>
-              </button>
-            ) : null}
+          {clientWidth ? (
+            <button className="btn left" onClick={handlePrev}>
+              <i className="fa-solid fa-chevron-left"></i>
+            </button>
+          ) : null}
 
-            {clientWidth <= scrollWidth ? (
-              <button className="btn right" onClick={handleNext}>
-                <i className="fa-solid fa-chevron-right"></i>
-              </button>
-            ) : null}
-          </CarouselBox>
-        )}
+          {clientWidth <= scrollWidth ? (
+            <button className="btn right" onClick={handleNext}>
+              <i className="fa-solid fa-chevron-right"></i>
+            </button>
+          ) : null}
+        </CarouselBox>
       </Carousel>
     </PosterContainerBox>
   );

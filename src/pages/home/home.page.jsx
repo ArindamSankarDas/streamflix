@@ -1,5 +1,6 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { wait } from "../../assets/functions/promise.func";
+import { links } from "../../assets/data/data";
 
 import { HomeContainer } from "./home.styles";
 
@@ -16,12 +17,29 @@ const PosterContainer = lazy(() =>
 );
 
 const HomePage = () => {
+  const API_KEY = "375b53f7c31dd1ed7e388db6bf583b15";
+  const [list, setList] = useState([]);
+
+  async function fetchData(url, title) {
+    const response = await fetch(`${url}${API_KEY}`);
+
+    const data = await response.json();
+
+    setList((prevList) => [...prevList, { title, result: data.results }]);
+  }
+
+  useEffect(() => {
+    links.map((elem) => fetchData(elem.url, elem.title));
+  }, []);
   return (
     <HomeContainer>
       <NetflixHeader />
       <Suspense fallback={<OnLoad home />}>
         <Banner />
-        <PosterContainer />
+        
+        {list.map((elem, id) => (
+          <PosterContainer key={id} data={elem.result} title={elem.title} />
+        ))}
       </Suspense>
     </HomeContainer>
   );
