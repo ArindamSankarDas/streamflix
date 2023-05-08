@@ -3,18 +3,18 @@ import { links } from "../../assets/data/data";
 import { useQueries } from "@tanstack/react-query";
 import { wait } from "../../assets/functions/promise.func";
 
-import { HomeContainer } from "./home.styles";
+import { HomeContainer, CarouselList } from "./home.styles";
 
 import OnLoad from "../../components/onLoad/onLoad.component";
 import NetflixHeader from "../../components/netflix-header/netflix-header.component";
 
 const Banner = lazy(() =>
-  wait(1000).then(() => import("../../components/banner/banner.component"))
+  wait(2000).then(() => import("../../components/banner/banner.component"))
 );
 
-const PosterContainer = lazy(() =>
+const CarouselContainer = lazy(() =>
   wait(3000).then(() =>
-    import("../../components/poster-container/poster-container.component")
+    import("../../components/carousel-container/carousel-container.component")
   )
 );
 
@@ -32,7 +32,6 @@ const HomePage = () => {
       return {
         queryKey: ["post", elem],
         queryFn: () => fetchData(elem),
-        refetchInterval: 1000,
       };
     }),
   });
@@ -45,13 +44,19 @@ const HomePage = () => {
       </Suspense>
 
       <Suspense fallback={<OnLoad />}>
-        {ListData.map(({ data, isLoading }, id) =>
-          isLoading ? (
-            <OnLoad key={id} />
-          ) : (
-            <PosterContainer key={id} data={data.result} title={data.title} />
-          )
-        )}
+        <CarouselList>
+          {ListData.map(({ data, isLoading }, id) =>
+            isLoading ? (
+              <OnLoad key={id} />
+            ) : (
+              <CarouselContainer
+                key={id}
+                data={data.result}
+                title={data.title}
+              />
+            )
+          )}
+        </CarouselList>
       </Suspense>
     </HomeContainer>
   );

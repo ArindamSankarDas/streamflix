@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSessionStorage } from "../../hooks/useSessionStorage";
 
 import {
@@ -25,7 +25,7 @@ const NetflixHeader = () => {
 
   const [dropdownActive, setDropdownActive] = useState(false);
 
-  const handleScroll = () => {
+  useEffect(() => {
     window.addEventListener("scroll", () => {
       if (window.scrollY > 20) {
         setBg(true);
@@ -33,9 +33,7 @@ const NetflixHeader = () => {
         setBg(false);
       }
     });
-  };
-
-  handleScroll();
+  }, [bg]);
 
   const handleStyles = (prev, elem) => {
     setCurrentList((prevListState) => {

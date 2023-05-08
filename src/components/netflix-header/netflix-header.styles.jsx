@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
 export const HeaderContainer = styled.div`
   width: 100%;
@@ -92,7 +92,7 @@ export const List = styled.ul`
 
 export const Item = styled.li`
   color: ${({ isActive }) => (isActive ? "white" : "#ccc6c6")};
-  font-weight: ${({ isActive }) => (isActive ? "700" : "500")};
+  font-weight: 500;
   padding: 2rem 0;
   cursor: pointer;
 
@@ -128,6 +128,7 @@ export const AccountSearchAndNotification = styled.div`
       width: 3.5rem;
     }
   }
+
   @media screen and (width > 1024px) {
     gap: 4rem;
   }

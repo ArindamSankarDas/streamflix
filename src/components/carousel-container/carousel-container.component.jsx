@@ -2,16 +2,15 @@ import { useRef, useState } from "react";
 import {
   Carousel,
   CarouselBox,
-  CarouselItem,
-  PosterContainerBox,
-} from "./poster-container.styles";
+  CarouselContainerBox,
+} from "./carousel-container.styles";
+
+import CardItem from "../card-item/card-item.component";
 
 const PosterContainer = ({ data, title }) => {
   const carouselRef = useRef();
   const [clientWidth, setClientWidth] = useState(0);
   const [scrollWidth, setScrollWidth] = useState(0);
-
-  const baseImgUrl = "https://image.tmdb.org/t/p/w500";
 
   const handleNext = () => {
     const scrollCalculation =
@@ -52,15 +51,13 @@ const PosterContainer = ({ data, title }) => {
   };
 
   return (
-    <PosterContainerBox>
+    <CarouselContainerBox>
       <h1>{title}</h1>
 
       <Carousel>
         <CarouselBox className="carousel-box" ref={carouselRef}>
-          {data.map((elem) => (
-            <CarouselItem key={elem.id}>
-              <img src={baseImgUrl + elem.backdrop_path} alt="img" />
-            </CarouselItem>
+          {data.map((elem, id) => (
+            <CardItem key={id} imagePath={elem.backdrop_path} />
           ))}
 
           {clientWidth ? (
@@ -76,7 +73,7 @@ const PosterContainer = ({ data, title }) => {
           ) : null}
         </CarouselBox>
       </Carousel>
-    </PosterContainerBox>
+    </CarouselContainerBox>
   );
 };
 

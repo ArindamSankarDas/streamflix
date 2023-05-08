@@ -1,11 +1,8 @@
 import styled from "styled-components";
 
-export const PosterContainerBox = styled.section`
-  margin-top: 5rem;
-  padding-bottom: 3rem;
-
+export const CarouselContainerBox = styled.section`
   h1 {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     padding-left: 1.8rem;
     font-weight: 500;
   }
@@ -18,7 +15,7 @@ export const PosterContainerBox = styled.section`
 
   @media screen and (width > 1000px) {
     h1 {
-      font-size: 2.5rem;
+      font-size: 1.4vw;
       padding-left: 5.5rem;
     }
   }
@@ -91,30 +88,5 @@ export const CarouselBox = styled.div`
       padding: 0 1.8rem;
       height: 14.9rem;
     }
-  }
-`;
-
-export const CarouselItem = styled.div`
-  align-self: center;
-  width: 18rem;
-  border-radius: 0.2rem;
-  transition: all 0.2s ease-in-out;
-
-  img {
-    width: 100%;
-    height: 100%;
-    border-radius: 0.2rem;
-  }
-
-  &:hover {
-    transform: scale(1.2);
-  }
-
-  @media screen and (width > 500px) {
-    width: 22rem;
-  }
-
-  @media screen and (width > 1000px) {
-    width: 26rem;
   }
 `;
