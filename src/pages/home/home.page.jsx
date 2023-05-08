@@ -1,6 +1,7 @@
-import { lazy, Suspense, useEffect, useState } from "react";
-import { wait } from "../../assets/functions/promise.func";
+import { lazy, Suspense } from "react";
 import { links } from "../../assets/data/data";
+import { useQueries } from "@tanstack/react-query";
+import { wait } from "../../assets/functions/promise.func";
 
 import { HomeContainer } from "./home.styles";
 
@@ -8,38 +9,49 @@ import OnLoad from "../../components/onLoad/onLoad.component";
 import NetflixHeader from "../../components/netflix-header/netflix-header.component";
 
 const Banner = lazy(() =>
-  wait(2000).then(() => import("../../components/banner/banner.component"))
+  wait(1000).then(() => import("../../components/banner/banner.component"))
 );
+
 const PosterContainer = lazy(() =>
-  wait(2000).then(() =>
+  wait(3000).then(() =>
     import("../../components/poster-container/poster-container.component")
   )
 );
 
 const HomePage = () => {
-  const API_KEY = "375b53f7c31dd1ed7e388db6bf583b15";
-  const [list, setList] = useState([]);
-
-  async function fetchData(url, title) {
-    const response = await fetch(`${url}${API_KEY}`);
+  async function fetchData(postArr) {
+    const response = await fetch(postArr.url);
 
     const data = await response.json();
 
-    setList((prevList) => [...prevList, { title, result: data.results }]);
+    return { title: postArr.title, result: data.results };
   }
 
-  useEffect(() => {
-    links.map((elem) => fetchData(elem.url, elem.title));
-  }, []);
+  const ListData = useQueries({
+    queries: links.map((elem) => {
+      return {
+        queryKey: ["post", elem],
+        queryFn: () => fetchData(elem),
+        refetchInterval: 1000,
+      };
+    }),
+  });
+
   return (
     <HomeContainer>
       <NetflixHeader />
       <Suspense fallback={<OnLoad home />}>
         <Banner />
-        
-        {list.map((elem, id) => (
-          <PosterContainer key={id} data={elem.result} title={elem.title} />
-        ))}
+      </Suspense>
+
+      <Suspense fallback={<OnLoad />}>
+        {ListData.map(({ data, isLoading }, id) =>
+          isLoading ? (
+            <OnLoad key={id} />
+          ) : (
+            <PosterContainer key={id} data={data.result} title={data.title} />
+          )
+        )}
       </Suspense>
     </HomeContainer>
   );

@@ -6,7 +6,8 @@ const isHomeActive = css`
 `;
 
 const isHomeNotActive = css`
-  margin-top: 1rem;
+  margin-top: 2rem;
+  padding-bottom: 2rem;
 `;
 
 const skeleton_loading = keyframes`

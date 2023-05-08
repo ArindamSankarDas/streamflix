@@ -41,7 +41,14 @@ export const CarouselBox = styled.div`
   grid-auto-flow: column;
   gap: 0.5rem;
 
+  &:hover {
+    .btn {
+      display: initial;
+    }
+  }
+
   .btn {
+    display: none;
     position: absolute;
     height: 10.4rem;
     top: 50%;
