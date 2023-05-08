@@ -161,10 +161,9 @@ export const BannerFadeEffect = styled.div`
   width: 100%;
   height: 60vh;
   background-image: linear-gradient(
-    180deg,
     transparent,
-    rgba(37, 37, 37, 0.61),
-    #111
+    rgb(55 52 52 / 61%),
+    rgb(1 1 1)
   );
 
   @media (max-width: 768px) {
