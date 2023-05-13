@@ -1,7 +1,10 @@
 import { useRef, useState } from "react";
-import { BannerContainer, BannerFadeEffect, TitleAndInfo } from "./banner.styles";
-import mutePng from "../../assets/images/mute.png";
-import volumePng from "../../assets/images/volume.png";
+import {
+  BannerContainer,
+  BannerFadeEffect,
+  BtnContainer,
+  TitleAndInfo,
+} from "./banner.styles";
 import narcos from "../../assets/videos/Narcos - Opening Credits [HD] - Netflix.mp4";
 
 const Banner = () => {
@@ -19,25 +22,27 @@ const Banner = () => {
         <source src={narcos} type="video/mp4" />
       </video>
 
-      <button onClick={handleclick}>
-        {isMute ? (
-          <img src={mutePng} alt="volume" />
-        ) : (
-          <img src={volumePng} alt="mute" />
-        )}
-      </button>
       <TitleAndInfo>
         <h1>Narcos</h1>
-        <div className="btn-container">
-          <button>
-            <i className="fa-solid fa-play"></i>
-            <span>Play</span>
+        <BtnContainer>
+          <div className="Play_and_Info">
+            <button>
+              <i className="fa-solid fa-play"></i>
+              <span>Play</span>
+            </button>
+            <button>
+              <i className="fa-solid fa-circle-info"></i>
+              <span>More Info</span>
+            </button>
+          </div>
+          <button onClick={handleclick}>
+            {isMute ? (
+              <i className="fa-sharp fa-solid fa-volume-xmark"></i>
+            ) : (
+              <i className="fa-solid fa-volume-high"></i>
+            )}
           </button>
-          <button>
-            <i className="fa-solid fa-circle-info"></i>
-            <span>More Info</span>
-          </button>
-        </div>
+        </BtnContainer>
       </TitleAndInfo>
       <BannerFadeEffect />
     </BannerContainer>

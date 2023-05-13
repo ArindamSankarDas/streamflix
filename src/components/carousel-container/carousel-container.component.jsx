@@ -57,7 +57,7 @@ const PosterContainer = ({ data, title }) => {
       <Carousel>
         <CarouselBox className="carousel-box" ref={carouselRef}>
           {data.map((elem, id) => (
-            <CardItem key={id} imagePath={elem.backdrop_path} />
+            <CardItem key={id} itemData={elem} />
           ))}
 
           {clientWidth ? (

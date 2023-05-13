@@ -6,6 +6,7 @@ export const HomeContainer = styled.div`
   font-family: "Roboto", sans-serif;
   min-width: 100%;
   min-height: 100vh;
+  position: relative;
 `;
 
 export const CarouselList = styled.section`

@@ -1,4 +1,5 @@
 import { lazy, Suspense } from "react";
+import { useSelector } from "react-redux";
 import { links } from "../../assets/data/data";
 import { useQueries } from "@tanstack/react-query";
 import { wait } from "../../assets/functions/promise.func";
@@ -6,6 +7,7 @@ import { wait } from "../../assets/functions/promise.func";
 import { HomeContainer, CarouselList } from "./home.styles";
 
 import OnLoad from "../../components/onLoad/onLoad.component";
+import PopUpModal from "../../components/pop-up-modal/pop-up-modal.component";
 import NetflixHeader from "../../components/netflix-header/netflix-header.component";
 
 const Banner = lazy(() =>
@@ -19,6 +21,8 @@ const CarouselContainer = lazy(() =>
 );
 
 const HomePage = () => {
+  const modalSelector = useSelector((state) => state.modal);
+
   async function fetchData(postArr) {
     const response = await fetch(postArr.url);
 
@@ -28,9 +32,9 @@ const HomePage = () => {
   }
 
   const ListData = useQueries({
-    queries: links.map((elem) => {
+    queries: links.map((elem, id) => {
       return {
-        queryKey: ["post", elem],
+        queryKey: ["post", id],
         queryFn: () => fetchData(elem),
       };
     }),
@@ -42,7 +46,6 @@ const HomePage = () => {
       <Suspense fallback={<OnLoad home />}>
         <Banner />
       </Suspense>
-
       <Suspense fallback={<OnLoad />}>
         <CarouselList>
           {ListData.map(({ data, isLoading }, id) =>
@@ -58,6 +61,7 @@ const HomePage = () => {
           )}
         </CarouselList>
       </Suspense>
+      {modalSelector ? <PopUpModal modalData={modalSelector} /> : null}
     </HomeContainer>
   );
 };

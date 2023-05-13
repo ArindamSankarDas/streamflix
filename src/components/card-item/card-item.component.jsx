@@ -1,13 +1,19 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { baseImgUrl } from "../../assets/data/data";
 import { CardItemContainer } from "./card-item.styles";
+import { openModal } from "../../redux/modalReducer/modal.actions";
 
-const CardItem = ({ imagePath }) => {
-  const baseImgUrl = "https://image.tmdb.org/t/p/w500";
+const CardItem = ({ itemData }) => {
+
+  const dispatch = useDispatch();
 
   return (
-    <CardItemContainer>
-      <img src={baseImgUrl + imagePath} alt="img" />
-    </CardItemContainer>
+    <>
+      <CardItemContainer onClick={() => dispatch(openModal(itemData))}>
+        <img src={baseImgUrl + itemData.backdrop_path} alt="img" />
+      </CardItemContainer>
+    </>
   );
 };
 
