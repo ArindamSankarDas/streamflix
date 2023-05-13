@@ -103,7 +103,7 @@ export const TitleAndControl = styled.div`
   h1 {
     font-size: 2rem;
     font-family: "Rubik Pixels", cursive;
-    font-weight: 500;
+    font-weight: 700;
     margin-top: 1rem;
     padding-right: 10rem;
   }
@@ -137,7 +137,7 @@ export const TitleAndControl = styled.div`
       color: white;
       font-size: 2.5rem;
       padding: 0.7rem 1rem;
-      scale: 0.6; //scale 1
+      scale: 0.6;
       border-radius: 100%;
       border: 3px solid grey;
       cursor: pointer;
@@ -150,7 +150,7 @@ export const TitleAndControl = styled.div`
     align-items: center;
     font-size: 1.5rem;
     border: none;
-    padding: 0.5rem 1rem; //1rem 3rem
+    padding: 0.5rem 1rem;
     border-radius: 0.3rem;
     cursor: pointer;
     gap: 1rem;
@@ -209,10 +209,6 @@ export const TitleAndControl = styled.div`
   }
 
   @media screen and (width > 500px) {
-    h1 {
-      font-weight: 700;
-    }
-
     #play-btn {
       font-size: 2rem;
       padding: 0.9rem 3rem;
