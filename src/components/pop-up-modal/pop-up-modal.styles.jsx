@@ -15,22 +15,19 @@ export const ModalContainer = styled.div`
 
 export const Modal = styled.div`
   width: 95%;
-  height: 60%;
+  height: auto;
   background-color: #272525;
   border-radius: 1.2rem;
 
   @media screen and (width > 500px) {
     width: 90%;
-    height: 70%;
   }
   @media screen and (width > 700px) {
     width: 70%;
-    height: 85%;
   }
 
   @media screen and (width > 1024px) {
     width: 50%;
-    height: 90%;
   }
 `;
 
@@ -57,6 +54,7 @@ export const ModalBanner = styled.div`
   }
 
   .close_btn {
+    z-index: 20;
     position: absolute;
     top: 4%;
     right: 4%;
@@ -77,6 +75,48 @@ export const ModalBanner = styled.div`
     .close_btn {
       font-size: 2rem;
       padding: 1rem 1.5rem;
+    }
+  }
+`;
+
+export const ModalInfo = styled.div`
+  padding: 2rem;
+
+  h1 {
+    font-weight: 500;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    color: white;
+    font-size: 1.5rem;
+    text-align: justify;
+  }
+
+  @media screen and (width > 400px) {
+    padding: 3rem;
+  }
+
+  @media screen and (width > 500px) {
+    h1 {
+      font-size: 2.3rem;
+    }
+
+    p {
+      font-size: 1.8rem;
+    }
+  }
+
+  @media screen and (width > 700px) {
+    padding: 3rem 5rem 5rem 5rem;
+
+    h1 {
+      font-size: 2.6rem;
+    }
+
+    p {
+      font-size: 2rem;
     }
   }
 `;
@@ -105,7 +145,7 @@ export const TitleAndControl = styled.div`
     font-family: "Rubik Pixels", cursive;
     font-weight: 700;
     margin-top: 1rem;
-    padding-right: 10rem;
+    padding-right: 1rem;
   }
 
   .btn-container {

@@ -5,9 +5,7 @@ import { CardItemContainer } from "./card-item.styles";
 import { openModal } from "../../redux/modalReducer/modal.actions";
 
 const CardItem = ({ itemData }) => {
-
   const dispatch = useDispatch();
-
   return (
     <>
       <CardItemContainer onClick={() => dispatch(openModal(itemData))}>

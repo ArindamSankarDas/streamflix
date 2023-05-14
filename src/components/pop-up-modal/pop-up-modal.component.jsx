@@ -1,18 +1,21 @@
 import { useDispatch } from "react-redux";
 import { baseImgUrl } from "../../assets/data/data";
 import { closeModal } from "../../redux/modalReducer/modal.actions";
+
 import NetflixLogo from "../../assets/images/netflix.svg";
 
 import {
-  ModalContainer,
   Modal,
+  ModalInfo,
   ModalBanner,
+  ModalContainer,
   TitleAndControl,
-} from "./pop-up-modal-styles";
+} from "./pop-up-modal.styles";
 
 const PopUpModal = ({ modalData }) => {
   const modalDispatch = useDispatch();
-  const { backdrop_path, media_type, title, original_title, name } = modalData;
+  const { backdrop_path, media_type, title, original_title, name, overview } =
+    modalData;
 
   return (
     <ModalContainer>
@@ -48,6 +51,10 @@ const PopUpModal = ({ modalData }) => {
             </div>
           </TitleAndControl>
         </ModalBanner>
+        <ModalInfo>
+          <h1>Storyline: </h1>
+          <p>{overview}</p>
+        </ModalInfo>
       </Modal>
     </ModalContainer>
   );

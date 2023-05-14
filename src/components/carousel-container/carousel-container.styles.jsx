@@ -32,16 +32,15 @@ export const CarouselBox = styled.div`
   padding-left: 1.8rem;
   width: auto;
   height: 14rem;
-  overflow: hidden;
+  overflow-y: hidden;
+  overflow-x: scroll;
   display: grid;
   grid-template-rows: repeat(1, auto);
   grid-auto-flow: column;
   gap: 0.5rem;
 
-  &:hover {
-    .btn {
-      display: initial;
-    }
+  &::-webkit-scrollbar {
+    overflow: hidden;
   }
 
   .btn {
@@ -80,6 +79,7 @@ export const CarouselBox = styled.div`
   }
 
   @media screen and (width > 1000px) {
+    overflow: hidden;
     padding-left: 5rem;
     gap: 3rem;
 
@@ -87,6 +87,12 @@ export const CarouselBox = styled.div`
       font-size: 2.2rem;
       padding: 0 1.8rem;
       height: 14.9rem;
+    }
+
+    &:hover {
+      .btn {
+        display: initial;
+      }
     }
   }
 `;
