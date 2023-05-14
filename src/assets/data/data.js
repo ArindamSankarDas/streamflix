@@ -1,4 +1,4 @@
-const API_KEY = "375b53f7c31dd1ed7e388db6bf583b15";
+export const API_KEY = "375b53f7c31dd1ed7e388db6bf583b15";
 
 export const baseImgUrl = "https://image.tmdb.org/t/p/w500";
 

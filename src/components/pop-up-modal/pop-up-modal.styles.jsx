@@ -121,6 +121,39 @@ export const ModalInfo = styled.div`
   }
 `;
 
+export const TrailerVideo = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 50;
+  padding: 8rem 2rem;
+  border-radius: 0.8rem;
+  background-color: #262525;
+
+  iframe {
+    width: 80vw;
+    height: 70vh;
+  }
+
+  button {
+    position: absolute;
+    top: 2%;
+    right: 4%;
+    color: white;
+    background-color: #545050;
+    border: 2px solid transparent;
+    font-size: 1.5rem;
+    padding: 0.8rem 1.2rem;
+    border-radius: 100%;
+    cursor: pointer;
+
+    &:active {
+      border: 2px solid white;
+    }
+  }
+`;
+
 export const TitleAndControl = styled.div`
   position: absolute;
   bottom: 10%;
@@ -149,6 +182,7 @@ export const TitleAndControl = styled.div`
   }
 
   .btn-container {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 0;
@@ -196,7 +230,6 @@ export const TitleAndControl = styled.div`
     gap: 1rem;
     border: 2px solid transparent;
     background-color: white;
-    z-index: 100;
 
     i {
       font-size: 1.5rem;
