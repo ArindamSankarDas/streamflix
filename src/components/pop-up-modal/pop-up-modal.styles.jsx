@@ -127,13 +127,14 @@ export const TrailerVideo = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 50;
-  padding: 8rem 2rem;
+  padding: 3rem 1rem;
   border-radius: 0.8rem;
   background-color: #262525;
+  border: 1px solid white;
 
   iframe {
-    width: 80vw;
-    height: 70vh;
+    width: 90vw;
+    height: 40vh;
   }
 
   button {
@@ -150,6 +151,20 @@ export const TrailerVideo = styled.div`
 
     &:active {
       border: 2px solid white;
+    }
+  }
+
+  @media screen and (width > 600px) {
+    iframe {
+      height: 60vh;
+    }
+  }
+  @media screen and (width > 900px) {
+    padding: 8rem 2rem;
+
+    iframe {
+      width: 80vw;
+      height: 75vh;
     }
   }
 `;
