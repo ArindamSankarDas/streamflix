@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 
 import {
   getAuth,
+  signOut,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
@@ -18,7 +19,7 @@ const firebaseConfig = {
 
 initializeApp(firebaseConfig);
 
-const auth = getAuth();
+export const auth = getAuth();
 
 export const createUser = async (email, password) => {
   await createUserWithEmailAndPassword(auth, email, password);

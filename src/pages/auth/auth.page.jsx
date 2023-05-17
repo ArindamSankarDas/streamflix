@@ -11,11 +11,11 @@ import AuthButton from "../../components/auth-button/auth-button.component";
 export const SignIn = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const userSelector = useSelector((state) => state.user);
   const [formState, setFormState] = useState({
     email: "",
     password: "",
   });
-  const userSelector = useSelector((state) => state.user);
 
   useEffect(() => {
     if (userSelector) {
@@ -32,16 +32,14 @@ export const SignIn = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!formState.email || !formState.password) {
       alert("fill the inputs");
     } else {
-      try {
-        const userInfo = await logUser(formState.email, formState.password);
-
-        if (userInfo === undefined) {
+      logUser(formState.email, formState.password)
+        .then(() => {
           dispatch(
             setUser({ email: formState.email, password: formState.password })
           );
@@ -49,10 +47,8 @@ export const SignIn = () => {
             email: "",
             password: "",
           });
-        }
-      } catch (error) {
-        alert(error.message);
-      }
+        })
+        .catch((error) => alert(error.message));
     }
   };
 
@@ -125,10 +121,13 @@ export const SignUp = () => {
     } else if (formState.password !== formState["re-enter-pass"]) {
       alert("passwords don't match");
     } else {
-      createUser(formState.email, formState.password);
-      dispatch(
-        setUser({ email: formState.email, password: formState.password })
-      );
+      createUser(formState.email, formState.password)
+        .then(() => {
+          dispatch(
+            setUser({ email: formState.email, password: formState.password })
+          );
+        })
+        .catch((error) => alert(alert.message));
 
       setFormState({
         email: "",

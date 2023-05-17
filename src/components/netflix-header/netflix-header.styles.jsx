@@ -119,9 +119,68 @@ export const AccountSearchAndNotification = styled.div`
   }
 
   .account {
+    position: relative;
     display: flex;
     align-items: center;
-    gap: 0.7rem;
+    gap: 1rem;
+    cursor: pointer;
+
+    i {
+      font-size: 1.7rem;
+    }
+
+    .account_dropDown {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: calc(100% + 1rem);
+      right: ${({ isActive }) => (isActive ? "8%" : "-100rem")};
+      width: fit-content;
+      background-color: #0f0f0fe0;
+      transition: right 0.3s ease-in-out;
+
+      ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        padding: 2rem 2.2rem;
+        gap: 1.7rem;
+
+        li {
+          width: 15rem;
+          display: flex;
+          flex-wrap: nowrap;
+          gap: 2rem;
+          justify-content: center;
+          align-items: center;
+
+          h4 {
+            font-size: 1.2rem;
+            font-weight: normal;
+            width: 100%;
+          }
+
+          &:hover {
+            h4 {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+
+      button {
+        color: white;
+        background: transparent;
+        border: none;
+        padding: 1rem 2rem;
+        border-top: 1px solid gray;
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
   }
 
   @media screen and (width > 400px) {
