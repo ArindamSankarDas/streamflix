@@ -7,8 +7,8 @@ import netflixBg from "./assets/images/netflix-bg.jpg";
 import WelcomeHeader from "./components/welcome-header/welcome-header.component";
 
 const App = () => {
-  const { pathname } = useLocation();
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const [email, setEmail] = useState("");
 
   return (

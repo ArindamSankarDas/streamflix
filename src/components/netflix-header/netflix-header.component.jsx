@@ -79,7 +79,11 @@ const NetflixHeader = () => {
         <span>
           <i className="fa-regular fa-bell"></i>
         </span>
-        <img src={profileIcon} alt="profile_icon" />
+
+        <span className="account">
+          <img src={profileIcon} alt="profile_icon" />
+          <i className="fa-solid fa-caret-down"></i>
+        </span>
       </AccountSearchAndNotification>
     </HeaderContainer>
   );

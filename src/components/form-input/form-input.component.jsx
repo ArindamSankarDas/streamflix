@@ -3,7 +3,7 @@ import { InputContainer, InputLabel } from "./form-input.styles";
 const FormInput = ({ labelName, value, ...props }) => {
   return (
     <InputContainer>
-      <input {...props} />
+      <input value={value} {...props} />
       <InputLabel isEmpty={value}>{labelName}</InputLabel>
     </InputContainer>
   );

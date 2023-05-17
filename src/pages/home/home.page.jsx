@@ -1,17 +1,20 @@
+import { HomeContainer, CarouselList } from "./home.styles";
+import OnLoad from "../../components/onLoad/onLoad.component";
+import NetflixHeader from "../../components/netflix-header/netflix-header.component";
+
 import { lazy, Suspense } from "react";
 import { useSelector } from "react-redux";
 import { links } from "../../assets/data/data";
 import { useQueries } from "@tanstack/react-query";
 import { wait } from "../../assets/functions/promise.func";
 
-import { HomeContainer, CarouselList } from "./home.styles";
-
-import OnLoad from "../../components/onLoad/onLoad.component";
-import PopUpModal from "../../components/pop-up-modal/pop-up-modal.component";
-import NetflixHeader from "../../components/netflix-header/netflix-header.component";
 
 const Banner = lazy(() =>
   wait(2000).then(() => import("../../components/banner/banner.component"))
+);
+
+const PopUpModal = lazy(() =>
+  import("../../components/pop-up-modal/pop-up-modal.component")
 );
 
 const CarouselContainer = lazy(() =>
@@ -45,8 +48,6 @@ const HomePage = () => {
       <NetflixHeader />
       <Suspense fallback={<OnLoad home />}>
         <Banner />
-      </Suspense>
-      <Suspense fallback={<OnLoad />}>
         <CarouselList>
           {ListData.map(({ data, isLoading }, id) =>
             isLoading ? (
@@ -61,7 +62,9 @@ const HomePage = () => {
           )}
         </CarouselList>
       </Suspense>
-      {modalSelector ? <PopUpModal modalData={modalSelector} /> : null}
+      <Suspense fallback={<h1>Loading...</h1>}>
+        {modalSelector ? <PopUpModal modalData={modalSelector} /> : null}
+      </Suspense>
     </HomeContainer>
   );
 };

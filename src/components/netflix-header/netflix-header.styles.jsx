@@ -118,6 +118,12 @@ export const AccountSearchAndNotification = styled.div`
     cursor: pointer;
   }
 
+  .account {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+
   @media screen and (width > 400px) {
     gap: 2rem;
     span {

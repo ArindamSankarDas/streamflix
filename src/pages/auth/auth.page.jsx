@@ -1,14 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { createUser, logUser } from "../../firebase/firebase.utils";
 import { AuthContainer, FormContainer, CustomLink } from "./auth.styles";
+import { setUser } from "../../redux/userReducer/user.actions";
 
 import FormInput from "../../components/form-input/form-input.component";
 import AuthButton from "../../components/auth-button/auth-button.component";
 
 export const SignIn = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [formState, setFormState] = useState({
     email: "",
     password: "",
   });
+  const userSelector = useSelector((state) => state.user);
+
+  useEffect(() => {
+    if (userSelector) {
+      navigate("/browse");
+    }
+  }, [userSelector]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,10 +32,34 @@ export const SignIn = () => {
     }));
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!formState.email || !formState.password) {
+      alert("fill the inputs");
+    } else {
+      try {
+        const userInfo = await logUser(formState.email, formState.password);
+
+        if (userInfo === undefined) {
+          dispatch(
+            setUser({ email: formState.email, password: formState.password })
+          );
+          setFormState({
+            email: "",
+            password: "",
+          });
+        }
+      } catch (error) {
+        alert(error.message);
+      }
+    }
+  };
+
   return (
     <AuthContainer>
       <div>
-        <FormContainer onSubmit={(e) => e.preventDefault()}>
+        <FormContainer onSubmit={handleSubmit}>
           <h1>Sign In</h1>
           <FormInput
             type="email"
@@ -51,7 +88,17 @@ export const SignIn = () => {
 };
 
 export const SignUp = () => {
-  const [fromState, setFormState] = useState({
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const userSelector = useSelector((state) => state.user);
+
+  useEffect(() => {
+    if (userSelector) {
+      navigate("/browse");
+    }
+  }, [userSelector]);
+
+  const [formState, setFormState] = useState({
     email: "",
     password: "",
     "re-enter-pass": "",
@@ -66,17 +113,42 @@ export const SignUp = () => {
     }));
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (
+      !formState.email ||
+      !formState.password ||
+      !formState["re-enter-pass"]
+    ) {
+      alert("fill the inputs");
+    } else if (formState.password !== formState["re-enter-pass"]) {
+      alert("passwords don't match");
+    } else {
+      createUser(formState.email, formState.password);
+      dispatch(
+        setUser({ email: formState.email, password: formState.password })
+      );
+
+      setFormState({
+        email: "",
+        password: "",
+        "re-enter-pass": "",
+      });
+    }
+  };
+
   return (
     <AuthContainer>
       <div>
-        <FormContainer onSubmit={(e) => e.preventDefault()}>
+        <FormContainer onSubmit={handleSubmit}>
           <h1>Sign Up</h1>
           <FormInput
             type="email"
             name="email"
             id="email"
             labelName="Enter your Email"
-            value={fromState.email}
+            value={formState.email}
             onChange={handleChange}
           />
           <FormInput
@@ -84,7 +156,7 @@ export const SignUp = () => {
             name="re-enter-pass"
             id="re-enter-pass"
             labelName="Enter your password"
-            value={fromState["re-enter-pass"]}
+            value={formState["re-enter-pass"]}
             onChange={handleChange}
           />
           <FormInput
@@ -92,7 +164,7 @@ export const SignUp = () => {
             name="password"
             id="password"
             labelName="Re-enter your password"
-            value={fromState.password}
+            value={formState.password}
             onChange={handleChange}
           />
           <AuthButton type="submit">Sign Up</AuthButton>
