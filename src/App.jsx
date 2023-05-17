@@ -36,7 +36,7 @@ const App = () => {
                 />
                 <h3>Enter your Email</h3>
               </div>
-              <button onClick={() => navigate("/browse")}>Get Started</button>
+              <button onClick={() => navigate("/sign-up")}>Get Started</button>
             </EmailContainer>
           </section>
         </AboutAndEmail>
