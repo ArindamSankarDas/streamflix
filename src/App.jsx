@@ -1,47 +1,19 @@
-import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React from "react";
+import HomePage from "./pages/home/home.page";
+import NetflixWelcomePage from "./pages/netflix-welcome/netflix-welcome.page";
 
-import { AppContainer, AboutAndEmail, EmailContainer } from "./App.styles";
-
-import netflixBg from "./assets/images/netflix-bg.jpg";
-import WelcomeHeader from "./components/welcome-header/welcome-header.component";
+import { Route, Routes } from "react-router-dom";
+import { SignIn, SignUp } from "./pages/auth/auth.page";
 
 const App = () => {
-  const navigate = useNavigate();
-  const { pathname } = useLocation();
-  const [email, setEmail] = useState("");
-
   return (
-    <AppContainer bgUrl={netflixBg}>
-      <WelcomeHeader />
-      {pathname === "/" ? (
-        <AboutAndEmail>
-          <section className="context">
-            <h1>Unlimited movies, TV shows and more</h1>
-            <div className="subtitles">
-              <h2>Watch anywhere. Cancel anytime.</h2>
-              <h2>
-                Ready to watch? Enter your email to create or restart your
-                membership
-              </h2>
-            </div>
-
-            <EmailContainer emailVal={email}>
-              <div>
-                <input
-                  type="email"
-                  value={email}
-                  name="email"
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                <h3>Enter your Email</h3>
-              </div>
-              <button onClick={() => navigate("/sign-up")}>Get Started</button>
-            </EmailContainer>
-          </section>
-        </AboutAndEmail>
-      ) : null}
-    </AppContainer>
+    <Routes>
+      <Route path="/" element={<NetflixWelcomePage />}>
+        <Route path="sign-in" element={<SignIn />} />
+        <Route path="sign-up" element={<SignUp />} />
+        <Route path="browse" element={<HomePage />} />
+      </Route>
+    </Routes>
   );
 };
 

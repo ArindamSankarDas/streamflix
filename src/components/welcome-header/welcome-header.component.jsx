@@ -9,14 +9,16 @@ const WelcomeHeader = () => {
 
   return (
     <>
-      <Header url={pathname}>
-        <img
-          src={netflixLogo}
-          alt="netflix-png"
-          onClick={() => navigate("/")}
-        />
-        <button onClick={() => navigate("/sign-in")}>Sign In</button>
-      </Header>
+      {pathname === "/browse" ? null : (
+        <Header url={pathname}>
+          <img
+            src={netflixLogo}
+            alt="netflix-png"
+            onClick={() => navigate("/")}
+          />
+          <button onClick={() => navigate("/sign-in")}>Sign In</button>
+        </Header>
+      )}
       <Outlet />
     </>
   );
