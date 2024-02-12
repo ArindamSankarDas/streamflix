@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
 import { API_KEY, baseImgUrl } from "../../assets/data/data";
-import { closeModal } from "../../redux/modalReducer/modal.actions";
+import { closeModal } from "../../redux/modalReducer/modal.reducer";
 
 import NetflixLogo from "../../assets/images/netflix.svg";
 
@@ -52,7 +52,7 @@ const PopUpModal = ({ modalData }) => {
           </div>
           <button
             className="close_btn"
-            onClick={() => modalDispatch(closeModal())}
+            onClick={() => modalDispatch(closeModal(null))}
           >
             <i className="fa-sharp fa-solid fa-xmark"></i>
           </button>

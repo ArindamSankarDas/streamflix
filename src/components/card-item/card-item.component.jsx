@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { baseImgUrl } from "../../assets/data/data";
 import { CardItemContainer } from "./card-item.styles";
-import { openModal } from "../../redux/modalReducer/modal.actions";
+import { openModal } from "../../redux/modalReducer/modal.reducer";
 
 const CardItem = ({ itemData }) => {
   const dispatch = useDispatch();

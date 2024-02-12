@@ -15,7 +15,7 @@ import {
 import netflixLogo from "../../assets/images/netflix-logo.png";
 import profileIcon from "../../assets/images/profile-icon.jpg";
 import { useDispatch, useSelector } from "react-redux";
-import { removeUser } from "../../redux/userReducer/user.actions";
+import { removeUser } from "../../redux/userReducer/user.reducer";
 
 const NetflixHeader = () => {
   const dispatch = useDispatch();

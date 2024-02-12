@@ -1,19 +1,33 @@
-import { setUser, removeUser } from "./user.actions";
+import { createSlice } from "@reduxjs/toolkit";
 
-const setUserCredentials = setUser();
-const removeUserCredentials = removeUser();
+const initialState = null;
 
-const INITIAL_STATE = null;
+// export const userReducer = (state = INITIAL_STATE, action) => {
+//   switch (action.type) {
+//     case setUserCredentials.type:
+//       return action.payload;
 
-export const userReducer = (state = INITIAL_STATE, action) => {
-  switch (action.type) {
-    case setUserCredentials.type:
+//     case removeUserCredentials.type:
+//       return action.payload;
+
+//     default:
+//       return state;
+//   }
+// };
+
+const userSlice = createSlice({
+  name: "user",
+  initialState,
+  reducers: {
+    setUser(state, action) {
       return action.payload;
+    },
+    removeUser(state, action) {
+      action.payload;
+    },
+  },
+});
 
-    case removeUserCredentials.type:
-      return action.payload;
+export const { setUser, removeUser } = userSlice.actions;
 
-    default:
-      return state;
-  }
-};
+export default userSlice.reducer;

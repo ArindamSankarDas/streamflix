@@ -1,12 +1,10 @@
-import logger from "redux-logger";
-import { rootReducer } from "./root-reducer";
-import {
-  compose,
-  applyMiddleware,
-  legacy_createStore as createStore,
-} from "redux";
+import { configureStore } from "@reduxjs/toolkit";
+import modalReducer from "./modalReducer/modal.reducer";
+import userReducer from "./userReducer/user.reducer";
 
-const middleware = [logger];
-const composedEnhancers = compose(applyMiddleware(...middleware));
-
-export const store = createStore(rootReducer, undefined, composedEnhancers);
+export const store = configureStore({
+  reducer: {
+    modal: modalReducer,
+    user: userReducer,
+  },
+});

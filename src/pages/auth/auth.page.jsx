@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { createUser, logUser } from "../../firebase/firebase.utils";
 import { AuthContainer, FormContainer, CustomLink } from "./auth.styles";
-import { setUser } from "../../redux/userReducer/user.actions";
+import { setUser } from "../../redux/userReducer/user.reducer";
 
 import FormInput from "../../components/form-input/form-input.component";
 import AuthButton from "../../components/auth-button/auth-button.component";
