@@ -3,7 +3,7 @@
 
 Embark on your journey to become a React.js maestro by building your very own Netflix clone! Introducing "Streamflix," a beginner-friendly project that will not only hone your React.js skills but also give you a taste of real-world web development.
 
-#Note**
+# **Note**
 If after logging in if the series and movies carousel doesn't show up then it means that your local ISP provider has blocked access to this resource. The same thing has happend to me if you are also facing this issue use a vpn to access the data. I prefer you use a inbuilt browser vpn such as opera but any vpn would do and most preferably set the destination to singapore.
 
 ## Features Present
