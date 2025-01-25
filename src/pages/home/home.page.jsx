@@ -2,12 +2,11 @@ import { HomeContainer, CarouselList } from "./home.styles";
 import OnLoad from "../../components/onLoad/onLoad.component";
 import NetflixHeader from "../../components/netflix-header/netflix-header.component";
 
-import { lazy, Suspense } from "react";
-import { useSelector } from "react-redux";
+import { lazy, Suspense, useState } from "react";
+
 import { links } from "../../assets/data/data";
 import { useQueries } from "@tanstack/react-query";
 import { wait } from "../../assets/functions/promise.func";
-
 
 const Banner = lazy(() =>
   wait(2000).then(() => import("../../components/banner/banner.component"))
@@ -24,7 +23,10 @@ const CarouselContainer = lazy(() =>
 );
 
 const HomePage = () => {
-  const modalSelector = useSelector((state) => state.modal);
+  const [modalInfo, setModalInfo] = useState({
+    isOpen: false,
+    modalData: null,
+  });
 
   async function fetchData(postArr) {
     const response = await fetch(postArr.url);
@@ -57,13 +59,19 @@ const HomePage = () => {
                 key={id}
                 data={data.result}
                 title={data.title}
+                handleModalState={setModalInfo}
               />
             )
           )}
         </CarouselList>
       </Suspense>
       <Suspense fallback={<h1>Loading...</h1>}>
-        {modalSelector ? <PopUpModal modalData={modalSelector} /> : null}
+        {modalInfo.isOpen && modalInfo.modalData ? (
+          <PopUpModal
+            modalData={modalInfo.modalData}
+            onClose={() => setModalInfo({ isOpen: false, modalData: null })}
+          />
+        ) : null}
       </Suspense>
     </HomeContainer>
   );

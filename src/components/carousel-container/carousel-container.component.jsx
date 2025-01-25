@@ -7,7 +7,7 @@ import {
 
 import CardItem from "../card-item/card-item.component";
 
-const PosterContainer = ({ data, title }) => {
+const PosterContainer = ({ data, title, handleModalState }) => {
   const carouselRef = useRef();
   const [clientWidth, setClientWidth] = useState(0);
   const [scrollWidth, setScrollWidth] = useState(0);
@@ -55,20 +55,26 @@ const PosterContainer = ({ data, title }) => {
       <h1>{title}</h1>
 
       <Carousel>
-        <CarouselBox className="carousel-box" ref={carouselRef}>
+        <CarouselBox className='carousel-box' ref={carouselRef}>
           {data.map((elem, id) => (
-            <CardItem key={id} itemData={elem} />
+            <CardItem
+              key={id}
+              itemData={elem}
+              handleClick={() =>
+                handleModalState({ isOpen: true, modalData: elem })
+              }
+            />
           ))}
 
           {clientWidth ? (
-            <button className="btn left" onClick={handlePrev}>
-              <i className="fa-solid fa-chevron-left"></i>
+            <button className='btn left' onClick={handlePrev}>
+              <i className='fa-solid fa-chevron-left'></i>
             </button>
           ) : null}
 
           {clientWidth <= scrollWidth ? (
-            <button className="btn right" onClick={handleNext}>
-              <i className="fa-solid fa-chevron-right"></i>
+            <button className='btn right' onClick={handleNext}>
+              <i className='fa-solid fa-chevron-right'></i>
             </button>
           ) : null}
         </CarouselBox>
