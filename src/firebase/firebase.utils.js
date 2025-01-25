@@ -2,9 +2,10 @@ import { initializeApp } from "firebase/app";
 
 import {
   getAuth,
-  signOut,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 
 const firebaseConfig = {
@@ -17,14 +18,36 @@ const firebaseConfig = {
   measurementId: "G-L6RNXR9SPM",
 };
 
-initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 
-export const auth = getAuth();
+const auth = getAuth(app);
 
 export const createUser = async (email, password) => {
-  await createUserWithEmailAndPassword(auth, email, password);
+  try {
+    await createUserWithEmailAndPassword(auth, email, password);
+  } catch (error) {
+    throw new Error(`${error.code}: ${error.message}`);
+  }
 };
 
-export const logUser = async (email, password) => {
-  await signInWithEmailAndPassword(auth, email, password);
+export const logIn = async (email, password) => {
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+  } catch (error) {
+    throw new Error(`${error.code}: ${error.message}`);
+  }
+};
+
+export const logOut = async () => {
+  try {
+    await signOut(auth);
+  } catch (error) {
+    throw new Error(`${error.code}: ${error.message}`);
+  }
+};
+
+export const checkAuthStatus = (setIsLoggedIn) => {
+  return onAuthStateChanged(auth, (user) => {
+    setIsLoggedIn(!!user);
+  });
 };
