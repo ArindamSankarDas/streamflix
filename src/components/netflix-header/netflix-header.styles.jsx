@@ -68,7 +68,7 @@ export const LogoAndNavContainer = styled.div`
 export const List = styled.ul`
   list-style: none;
   position: absolute;
-  top: ${({ isActive }) => (!isActive ? "-100rem" : "4rem")};
+  top: ${({ isactive }) => (!isactive ? "-100rem" : "4rem")};
   font-size: 1.4rem;
   width: 22rem;
   text-align: center;
@@ -91,7 +91,7 @@ export const List = styled.ul`
 `;
 
 export const Item = styled.li`
-  color: ${({ isActive }) => (isActive ? "white" : "#ccc6c6")};
+  color: ${({ isactive }) => (isactive ? "white" : "#ccc6c6")};
   font-weight: 500;
   padding: 2rem 0;
   cursor: pointer;
@@ -134,7 +134,7 @@ export const AccountSearchAndNotification = styled.div`
       flex-direction: column;
       position: absolute;
       top: calc(100% + 1rem);
-      right: ${({ isActive }) => (isActive ? "8%" : "-100rem")};
+      right: ${({ isactive }) => (isactive ? "8%" : "-100rem")};
       width: fit-content;
       background-color: #0f0f0fe0;
       transition: right 0.3s ease-in-out;
