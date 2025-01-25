@@ -16,7 +16,7 @@ const NetflixWelcomePage = () => {
   const [email, setEmail] = useState("");
 
   return (
-    <AppContainer bgUrl={netflixBg}>
+    <AppContainer bgurl={netflixBg}>
       <WelcomeHeader />
       {pathname === "/" ? (
         <AboutAndEmail>
@@ -30,7 +30,7 @@ const NetflixWelcomePage = () => {
               </h2>
             </div>
 
-            <EmailContainer emailVal={email}>
+            <EmailContainer emailval={email}>
               <div>
                 <input
                   type="email"

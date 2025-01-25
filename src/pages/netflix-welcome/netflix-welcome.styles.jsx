@@ -4,7 +4,7 @@ export const AppContainer = styled.div`
   position: relative;
   width: 100%;
   min-height: 100vh;
-  background: ${({ bgUrl }) => `url(${bgUrl})`} no-repeat center;
+  background: ${({ bgurl }) => `url(${bgurl})`} no-repeat center;
   background-size: cover;
   z-index: 20;
   color: white;
@@ -73,7 +73,7 @@ export const EmailContainer = styled.div`
       font-weight: 700;
       font-size: 1.5rem;
       color: #8c8c8c;
-      top: ${({ emailVal }) => (emailVal ? "22%" : "50%")};
+      top: ${({ emailval }) => (emailval ? "22%" : "50%")};
       left: 8%;
       transform: translateY(-50%);
       transition: top 0.3s ease-in;

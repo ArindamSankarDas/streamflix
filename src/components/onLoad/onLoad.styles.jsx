@@ -27,7 +27,7 @@ export const OnLoadContainer = styled.div`
   gap: 2rem;
   overflow: hidden;
   padding-left: 1.8rem;
-  ${({ isHome }) => (isHome ? isHomeActive : isHomeNotActive)}
+  ${({ ishome }) => (ishome ? isHomeActive : isHomeNotActive)}
 
   div {
     width: 60vw;

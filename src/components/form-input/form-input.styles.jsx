@@ -37,7 +37,7 @@ export const InputContainer = styled.div`
 
 export const InputLabel = styled.label`
   position: absolute;
-  top: ${({ isEmpty }) => (isEmpty ? "20%" : "50%")};
+  top: ${({ isempty }) => (isempty ? "20%" : "50%")};
   left: 2rem;
   transform: translateY(-50%);
   font-weight: 500;
@@ -46,7 +46,7 @@ export const InputLabel = styled.label`
   transition: top 0.1s linear;
 
   @media screen and (width > 640px) {
-    top: ${({ isEmpty }) => (isEmpty ? "33%" : "50%")};
+    top: ${({ isempty }) => (isempty ? "33%" : "50%")};
     left: 3.5rem;
   }
 `;

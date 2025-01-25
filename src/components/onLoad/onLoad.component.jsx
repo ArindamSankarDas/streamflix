@@ -3,7 +3,7 @@ import { OnLoadContainer } from "./onLoad.styles";
 
 const OnLoad = ({ home }) => {
   return (
-    <OnLoadContainer isHome={home}>
+    <OnLoadContainer ishome={home}>
       <div></div>
       <div></div>
       <div></div>

@@ -4,7 +4,7 @@ const FormInput = ({ labelName, value, ...props }) => {
   return (
     <InputContainer>
       <input value={value} {...props} />
-      <InputLabel isEmpty={value}>{labelName}</InputLabel>
+      <InputLabel isempty={value}>{labelName}</InputLabel>
     </InputContainer>
   );
 };
