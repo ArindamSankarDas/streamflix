@@ -26,12 +26,12 @@ Install my-project with npm
 
 ```bash
     cd streamflix
-    yarn
+    npm install
 ```
 Run the Client Server
 
 ```bash
-    yarn run dev
+    npm run dev
 ```
     
 ## Authors
