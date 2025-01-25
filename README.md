@@ -17,9 +17,7 @@ If after logging in if the series and movies carousel doesn't show up then it me
 
 ## Features missing
     1. Not all pages present. You are free to add more routable pages in the application.
-## Note
 
-The website is deployed on vercel so when you visit the link you will notice that after you refresh it will show an error page. I don't why this happens on vercel, it may be because of some internal error in their sever. That's all there is I wanted to say, just wanted to point it out.
 ## Installation
 
 Install my-project with npm
