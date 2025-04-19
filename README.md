@@ -35,7 +35,3 @@ Run the Client Server
 ## Authors
 
 - [@ArindamSankarDas](https://github.com/ArindamSankarDas)
-
-
-## Conclusion
-This is not a Full fledged MERN application. I have just limited it to the frontend part but I do have plans to upgrade it in the near future, so stay tuned for that.
